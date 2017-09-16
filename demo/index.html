@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .point-box {
+      margin: 100px 0;
+      height: 10px;
+    }
+    .point {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: gray;
+    }
+    .left {
+      float: left;
+    }
+    .right {
+      float: right;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="point-box">
+      <span class="point left point1"></span>
+      <span class="point right point2"></span>
+    </div>
+    <div class="point-box">
+      <span class="point left point3"></span>
+      <span class="point right point4"></span>
+    </div>
+  </div>
+  <script src="../dist/canvasDomLine.js"></script>
+  <script type="text/javascript">
+    var $root = document.querySelector('.container');
+    var $point1 = document.querySelector('.point1');
+    var $point2 = document.querySelector('.point2');
+    var $point3 = document.querySelector('.point3');
+    var $point4 = document.querySelector('.point4');
+
+    var canvasDomLine = canvasDomLine.default;
+
+    canvasDomLine.init($root);
+
+    canvasDomLine.drawLine($point1, $point2);
+    canvasDomLine.drawLine($point1, $point3);
+    canvasDomLine.drawLine($point1, $point4);
+    canvasDomLine.drawLine($point2, $point3);
+    canvasDomLine.drawLine($point2, $point4);
+    canvasDomLine.drawLine($point3, $point4);
+  </script>
+</body>
+</html>

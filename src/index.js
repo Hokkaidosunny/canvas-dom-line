@@ -24,7 +24,7 @@ function init(container) {
 
 //获取距离根节点left
 function getOffsetLeft(node) {
-  if (node.offsetParent === rootDom) {
+  if (node.offsetParent === rootDom || node.offsetParent === document.body) {
     return node.offsetLeft;
   } else {
     return node.offsetLeft + getOffsetLeft(node.offsetParent);
@@ -33,7 +33,7 @@ function getOffsetLeft(node) {
 
 //获取距离根节点top
 function getOffsetTop(node) {
-  if (node.offsetParent === rootDom) {
+  if (node.offsetParent === rootDom || node.offsetParent === document.body) {
     return node.offsetTop;
   } else {
     return node.offsetTop + getOffsetTop(node.offsetParent);
