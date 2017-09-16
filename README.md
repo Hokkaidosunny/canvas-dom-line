@@ -1,6 +1,5 @@
 # canvas-dom-line
-use canvas to draw line between 2 doms
-
+use canvas to draw line between 2 doms [demo](https://jsbin.com/baperev/edit?html,css,js,output)
 
 ## Usage
 * `npm i canvas-dom-line`
@@ -16,7 +15,7 @@ const $point4 = document.querySelector('.point4');
 
 //init container as the root dom
 //container mast have style: {position: relative;}
-canvasDomLine.init($root); 
+canvasDomLine.init($root);
 
 canvasDomLine.drawLine($point1, $point2);
 canvasDomLine.drawLine($point1, $point3);
