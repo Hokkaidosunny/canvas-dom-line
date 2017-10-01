@@ -1,6 +1,6 @@
 {
   "name": "canvas-dom-line",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "use canvas to draw line between 2 doms",
   "main": "./dist/canvasDomLine.js",
   "scripts": {

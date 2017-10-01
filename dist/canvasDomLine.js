@@ -83,91 +83,110 @@ return /******/ (function(modules) { // webpackBootstrap
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var canvas = void 0,
-    context = void 0,
-    rootDom = void 0;
 
-//设置canvas样式
-function setStyle() {
-  canvas.style.width = '100%';
-  canvas.style.height = '100%';
-  canvas.style.top = '0';
-  canvas.style.left = '0';
-  canvas.style.position = 'absolute';
-  canvas.style.zIndex = '-1';
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-  canvas.width = canvas.offsetWidth;
-  canvas.height = canvas.offsetHeight;
-}
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-//初始化
-function init(container) {
-  canvas = document.createElement('canvas');
-  context = canvas.getContext('2d');
-  container.appendChild(canvas);
-  rootDom = container;
-  setStyle();
-}
-
-//获取距离根节点left
-function getOffsetLeft(node) {
-  if (node.offsetParent === rootDom || node.offsetParent === document.body) {
-    return node.offsetLeft;
-  } else {
-    return node.offsetLeft + getOffsetLeft(node.offsetParent);
-  }
-}
-
-//获取距离根节点top
-function getOffsetTop(node) {
-  if (node.offsetParent === rootDom || node.offsetParent === document.body) {
-    return node.offsetTop;
-  } else {
-    return node.offsetTop + getOffsetTop(node.offsetParent);
-  }
-}
-
-//获取坐标
-function getPoint(node) {
-  var offsetWidth = node.offsetWidth,
-      offsetHeight = node.offsetHeight;
-
-
-  var offsetLeft = getOffsetLeft(node);
-  var offsetTop = getOffsetTop(node);
-
-  return {
-    x: offsetLeft + offsetWidth / 2,
-    y: offsetTop + offsetHeight / 2
-  };
-}
-
-//画线
-function drawLine(from, to) {
-  var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-
-  var fromNode = getPoint(from);
-  var toNode = getPoint(to);
-
-  context.strokeStyle = options.color || '#000000';
-  context.lineWidth = options.width || 1;
-
-  context.beginPath();
-  context.moveTo(fromNode.x, fromNode.y);
-  context.lineTo(toNode.x, toNode.y);
-  context.stroke();
-}
-
-//清空画布
-function clear() {
-  context.clearRect(0, 0, canvas.width, canvas.height);
-}
-
-exports.default = {
-  init: init,
-  drawLine: drawLine,
-  clear: clear
+var style = {
+  width: '100%',
+  height: '100%',
+  top: '0',
+  left: '0',
+  position: 'absolute',
+  zIndex: '-1'
 };
+
+var CanvasDomLine = function () {
+  function CanvasDomLine(container) {
+    _classCallCheck(this, CanvasDomLine);
+
+    this.rootDom = container;
+    this.canvas = document.createElement('canvas');
+    this.context = this.canvas.getContext('2d');
+
+    this.rootDom.appendChild(this.canvas);
+    this.setStyle();
+  }
+
+  //设置canvas样式
+
+
+  _createClass(CanvasDomLine, [{
+    key: 'setStyle',
+    value: function setStyle() {
+      var _this = this;
+
+      Object.keys(style).forEach(function (e) {
+        _this.canvas.style[e] = style[e];
+      });
+
+      this.canvas.width = this.canvas.offsetWidth;
+      this.canvas.height = this.canvas.offsetHeight;
+    }
+
+    //获取距离根节点left, top
+
+  }, {
+    key: 'getOffset',
+    value: function getOffset(node, offsetType) {
+      if (node.offsetParent === this.rootDom || node.offsetParent === document.body) {
+        return node[offsetType];
+      } else {
+        return node[offsetType] + this.getOffset(node.offsetParent, offsetType);
+      }
+    }
+
+    //获取坐标
+
+  }, {
+    key: 'getPoint',
+    value: function getPoint(node) {
+      var offsetWidth = node.offsetWidth,
+          offsetHeight = node.offsetHeight;
+
+
+      var offsetLeft = this.getOffset(node, 'offsetLeft');
+      var offsetTop = this.getOffset(node, 'offsetTop');
+
+      return {
+        x: offsetLeft + offsetWidth / 2,
+        y: offsetTop + offsetHeight / 2
+      };
+    }
+
+    //画线
+
+  }, {
+    key: 'drawLine',
+    value: function drawLine(from, to) {
+      var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+
+      var fromNode = this.getPoint(from);
+      var toNode = this.getPoint(to);
+
+      this.context.strokeStyle = options.color || '#000000';
+      this.context.lineWidth = (options.width || 1) * window.lib.flexible.dpr;
+
+      this.context.beginPath();
+      this.context.moveTo(fromNode.x, fromNode.y);
+      this.context.lineTo(toNode.x, toNode.y);
+      this.context.stroke();
+    }
+
+    //清空画布
+
+  }, {
+    key: 'clear',
+    value: function clear() {
+      this.context && this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    }
+  }]);
+
+  return CanvasDomLine;
+}();
+
+exports.default = CanvasDomLine;
 
 /***/ })
 /******/ ]);
