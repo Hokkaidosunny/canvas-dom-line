@@ -39,7 +39,7 @@
       <span class="point right point4"></span>
     </div>
   </div>
-  <script src="../dist/canvasDomLine.js"></script>
+  <script src="../dist/CanvasDomLine.js"></script>
   <script type="text/javascript">
     var $root = document.querySelector('.container');
     var $point1 = document.querySelector('.point1');
@@ -47,9 +47,9 @@
     var $point3 = document.querySelector('.point3');
     var $point4 = document.querySelector('.point4');
 
-    var canvasDomLine = canvasDomLine.default;
+    var CanvasDomLine = CanvasDomLine.default;
 
-    canvasDomLine.init($root);
+    var canvasDomLine = new CanvasDomLine($root);
 
     canvasDomLine.drawLine($point1, $point2);
     canvasDomLine.drawLine($point1, $point3);
