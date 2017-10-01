@@ -62,7 +62,7 @@ class CanvasDomLine {
     const toNode = this.getPoint(to);
 
     this.context.strokeStyle = options.color || '#000000';
-    this.context.lineWidth = (options.width || 1) * window.lib.flexible.dpr;
+    this.context.lineWidth = options.width || 1;
 
     this.context.beginPath();
     this.context.moveTo(fromNode.x, fromNode.y);
