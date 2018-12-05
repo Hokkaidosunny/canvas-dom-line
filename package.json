@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/Hokkaidosunny/canvas-dom-line#readme",
   "devDependencies": {
-    "build-my-package": "^0.0.6",
+    "build-my-package": "^0.0.7",
     "standard-version": "^4.4.0"
   }
 }
