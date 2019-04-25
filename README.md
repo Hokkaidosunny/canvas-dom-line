@@ -1,5 +1,5 @@
 # canvas-dom-line
-use canvas to draw line between 2 doms [demo](https://jsbin.com/baperev/edit?html,css,js,output)
+use canvas to draw line between 2 doms [demo](https://jsbin.com/woletovuha/edit?html,css,js,output)
 
 ## Usage
 * `npm i canvas-dom-line`
